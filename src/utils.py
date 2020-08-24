@@ -24,10 +24,10 @@ MAIN_DB = os.path.join(BASE_DIR, "brains/brain.db")
 MAIN_DB_MIN_SIZE = "50mb"
 MAIN_DB_MAX_SIZE = "300mb"
 #MAIN_DB = DB_DIR + "/brain.db"
-SCORE_THRESHOLD = 0  # downvote
+SCORE_THRESHOLD = 5  # downvote
 SUBREDDIT_THRESHOLD = 5000
-TOP_SUBREDDIT_NUM = 10  # number of subreddits to search for repost-able content
-MIN_SCORE = 0  # for posts to repost
+TOP_SUBREDDIT_NUM = 30  # number of subreddits to search for repost-able content
+MIN_SCORE = 3000  # for posts to repost
 SUBMISSION_SEARCH_TEMPLATE = f"https://api.pushshift.io/reddit/search/submission/?after={{after}}&before={{before}}&sort_type=score&sort=desc&subreddit={{subreddit}}&score=>{SUBREDDIT_THRESHOLD}"
 DAY = 86400  # POSIX day (exact value)
 MINUTE = 60
@@ -84,9 +84,12 @@ if os.environ.get('PORT'):
   if not os.environ.get('NOSCHEDULE'):
     USE_SLEEP_SCHEDULE = True
     BOT_SCHEDULES = [
-      {"days": 0, "schedule": [((4,00),(5,00)), ((17,30),(19,30))]},
-      {"days": 4, "schedule": [((8,00),(10,00)), ((20,30),(23,20))]},
-      {"days": 12, "schedule": [((9,00),(12,30)), ((18,00),(22,00))]},
+      {"days": 0, "schedule": [((1,00),(8,00)), ((12,30),(19,30))]},
+      {"days": 3, "schedule": [((3,00),(9,00)), ((14,30),(23,20))]},
+      {"days": 6, "schedule": [((5,00),(12,00)), ((15,30),(3,20))]},
+      {"days": 9, "schedule": [((3,00),(8,00)), ((11,30),(22,20))]},
+      {"days": 12, "schedule": [((7,00),(15,00)), ((1,30),(7,20))]},
+      {"days": 15, "schedule": [((9,00),(17,30)), ((2,00),(8,00))]},
       ]
 
 SCHEDULES = []
